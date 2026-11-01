@@ -12,7 +12,8 @@ from sklearn.metrics import (
     f1_score,
     roc_auc_score,
     confusion_matrix,
-    classification_report
+    classification_report,
+     matthews_corrcoef
 )
 
 # --------------------------------------------------
@@ -227,14 +228,16 @@ if uploaded_file is not None:
         )
 
         auc = roc_auc_score(y_test, y_prob)
+        mcc = matthews_corrcoef(y_test, y_pred)
 
-        col1, col2, col3, col4, col5 = st.columns(5)
+        col1, col2, col3, col4, col5, col6 = st.columns(6)
 
-        col1.metric("Accuracy", f"{accuracy:.4f}")
-        col2.metric("Precision", f"{precision:.4f}")
-        col3.metric("Recall", f"{recall:.4f}")
-        col4.metric("F1 Score", f"{f1:.4f}")
-        col5.metric("ROC-AUC", f"{auc:.4f}")
+col1.metric("Accuracy", f"{accuracy:.4f}")
+col2.metric("Precision", f"{precision:.4f}")
+col3.metric("Recall", f"{recall:.4f}")
+col4.metric("F1 Score", f"{f1:.4f}")
+col5.metric("ROC-AUC", f"{auc:.4f}")
+col6.metric("MCC", f"{mcc:.4f}")
 
         # --------------------------------------------------
         # 8. CONFUSION MATRIX
@@ -321,6 +324,10 @@ if uploaded_file is not None:
                     y_test,
                     probabilities
                 )
+                "MCC": matthews_corrcoef(
+    y_test,
+    predictions
+)
             })
 
         comparison_df = pd.DataFrame(comparison_results)
@@ -331,7 +338,8 @@ if uploaded_file is not None:
                 "Precision": "{:.4f}",
                 "Recall": "{:.4f}",
                 "F1 Score": "{:.4f}",
-                "ROC-AUC": "{:.4f}"
+                "ROC-AUC": "{:.4f}",
+                "MCC": "{:.4f}"
             }),
             use_container_width=True
         )
