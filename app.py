@@ -231,13 +231,12 @@ if uploaded_file is not None:
         mcc = matthews_corrcoef(y_test, y_pred)
 
         col1, col2, col3, col4, col5, col6 = st.columns(6)
-
-col1.metric("Accuracy", f"{accuracy:.4f}")
-col2.metric("Precision", f"{precision:.4f}")
-col3.metric("Recall", f"{recall:.4f}")
-col4.metric("F1 Score", f"{f1:.4f}")
-col5.metric("ROC-AUC", f"{auc:.4f}")
-col6.metric("MCC", f"{mcc:.4f}")
+        col1.metric("Accuracy", f"{accuracy:.4f}")
+        col2.metric("Precision", f"{precision:.4f}")
+        col3.metric("Recall", f"{recall:.4f}")
+        col4.metric("F1 Score", f"{f1:.4f}")
+        col5.metric("ROC-AUC", f"{auc:.4f}")
+        col6.metric("MCC", f"{mcc:.4f}")
 
         # --------------------------------------------------
         # 8. CONFUSION MATRIX
