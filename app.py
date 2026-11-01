@@ -324,9 +324,9 @@ if uploaded_file is not None:
                     probabilities
                 )
                 "MCC": matthews_corrcoef(
-    y_test,
-    predictions
-)
+                    y_test,
+                    predictions
+                )
             })
 
         comparison_df = pd.DataFrame(comparison_results)
