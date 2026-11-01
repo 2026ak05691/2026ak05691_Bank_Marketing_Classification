@@ -322,7 +322,7 @@ if uploaded_file is not None:
                 "ROC-AUC": roc_auc_score(
                     y_test,
                     probabilities
-                )
+                ),
                 "MCC": matthews_corrcoef(
                     y_test,
                     predictions
